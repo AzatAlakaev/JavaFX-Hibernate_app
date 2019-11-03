@@ -11,8 +11,6 @@ class UserDAOTest {
 
     @org.junit.jupiter.api.Test
     void save(User user) {
-        user=new User("Vasya", "Lobin", "vasya", "password", 1);
-        dao.save(user);
     }
 
     @org.junit.jupiter.api.Test

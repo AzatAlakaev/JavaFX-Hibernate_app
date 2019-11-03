@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.demoJavaFX.animation.Shake;
 import com.demoJavaFX.dao.UserDAO;
 import com.demoJavaFX.model.User;
+import com.demoJavaFX.service.PasswordUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -67,34 +68,34 @@ public class SignUpController {
     private boolean signUp() {
         UserDAO dao=new UserDAO();
         boolean isSignUp=false;
-        String firstName=firstNameField.getText().trim();
+        String firstName=firstNameField.getText().trim(); //.trim() чтобы убрать не нужные пробелы
         String lastName=lastNameField.getText().trim();
         String login=loginField.getText().trim();
-        String paswword=passwordField.getText().trim();
-        if (!firstName.isEmpty() && !lastName.isEmpty() && !login.isEmpty() && !paswword.isEmpty()) {
+        String password=passwordField.getText().trim();
+        if (!firstName.isEmpty() && !lastName.isEmpty() && !login.isEmpty() && !password.isEmpty()) {
             boolean isLogin = dao.findAll().stream().anyMatch(user1 -> user1.getLogin().equals(login));
             if (!isLogin) {
                 boolean isStudent = radioStudentButton.isSelected();
-                boolean isPrepod = radioPrepodButton.isSelected();
                 int type=0;
                 if (isStudent) {
                     type=1;
                 }
                 else type=2;
 
-                User user=new User(firstName, lastName, login, paswword, type);
+                User user=new User(firstName, lastName, login, PasswordUtils.hashPassword(password), type);
                 dao.save(user);
                 isSignUp=true;
             }
         }
         else {
             Shake shake = new Shake(signUpButton);
-           // shake.play();
             System.out.println("No way");
         }
         return isSignUp;
     }
 
+    //выделил отдельно повторяющийся код в метод, который переключает при нажатии на Button button
+    // на другое окно String fxml
     private void switchScene(Button button, String fxml) {
         button.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
@@ -109,4 +110,5 @@ public class SignUpController {
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
+
 }

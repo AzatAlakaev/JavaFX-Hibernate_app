@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class WelcomeController {
@@ -25,7 +26,13 @@ public class WelcomeController {
     private Label welcomeField;
 
     @FXML
+    private Text textField;
+
+    public static String welcomeText; //имя фамилия для привествия
+
+    @FXML
     void initialize() {
+        textField.setText(welcomeText); //имя фамилия для привествия
         helloButton.setOnAction(actionEvent -> {
             helloButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();

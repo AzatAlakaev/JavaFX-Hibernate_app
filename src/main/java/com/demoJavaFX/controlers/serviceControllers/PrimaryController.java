@@ -1,13 +1,9 @@
 package com.demoJavaFX.controlers.serviceControllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
 import com.demoJavaFX.animation.Shake;
 import com.demoJavaFX.dao.UserDAO;
 import com.demoJavaFX.model.User;
+import com.demoJavaFX.service.PasswordUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class PrimaryController {
 
@@ -66,7 +66,8 @@ public class PrimaryController {
         boolean isLogin = dao.findAll().stream().anyMatch(user1 -> user1.getLogin().equals(login));
         if (isLogin) {
             User user = dao.findAll().stream().filter(user1 -> user1.getLogin().equals(login)).findFirst().get();
-            if (user.getPassword().equals(password)) {
+            if (PasswordUtils.verifyPassword(password, user.getPassword())) {
+                WelcomeController.welcomeText = user.getFirstName() + " " + user.getLastName(); //имя фамилия для привествия
                 switchScene(signInButton, "/com/demoJavaFX/welcome.fxml");
             }
             else {
@@ -80,6 +81,8 @@ public class PrimaryController {
         }
     }
 
+    //выделил отдельно повторяющийся код в метод, который переключает при нажатии на Button button
+    // на другое окно String fxml
     private void switchScene(Button button, String fxml) {
         button.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
