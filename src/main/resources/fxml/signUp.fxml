@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="411.0" style="-fx-background-color: #211F24;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.serviceControllers.SignUpController">
+   <children>
+      <Label layoutX="147.0" layoutY="14.0" prefHeight="25.0" prefWidth="118.0" text="Регистрация" textFill="#f4f486" wrapText="true">
+         <font>
+            <Font name="Georgia Bold" size="16.0" />
+         </font></Label>
+      <JFXRadioButton fx:id="radioStudentButton" layoutX="98.0" layoutY="234.0" selected="true" style="-jfx-selected-color: #f4f486;" text="Студент" textFill="#f4f486" wrapText="true"><toggleGroup><ToggleGroup fx:id="group" /></toggleGroup></JFXRadioButton>
+      <JFXRadioButton fx:id="radioPrepodButton" layoutX="203.0" layoutY="234.0" style="-jfx-selected-color: #f4f486;" text="Преподователь" textFill="#f4f486" wrapText="true"><toggleGroup><fx:reference source="group" /></toggleGroup></JFXRadioButton>
+      <JFXButton fx:id="signUpButton" layoutX="143.0" layoutY="309.0" style="-fx-background-color: #F4F486;" text="Зарегестрироваться" />
+      <JFXButton fx:id="backButton" layoutX="33.0" layoutY="309.0" style="-fx-background-color: #F4F486;" text="Назад" />
+      <JFXTextField fx:id="loginField" layoutX="138.0" layoutY="81.0" promptText="Логин" style="-fx-background-color: #F4F486;" />
+      <JFXTextField fx:id="firstNameField" layoutX="138.0" layoutY="144.0" promptText="Имя" style="-fx-background-color: #F4F486;" />
+      <JFXTextField fx:id="lastNameField" layoutX="138.0" layoutY="177.0" promptText="Фамилия" style="-fx-background-color: #F4F486;" />
+      <JFXPasswordField fx:id="passwordField" layoutX="138.0" layoutY="113.0" promptText="Пароль" style="-fx-background-color: #F4F486;" />
+   </children>
+</AnchorPane>

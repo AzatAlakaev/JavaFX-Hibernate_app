@@ -1,68 +1,68 @@
 package com.demoJavaFX.controlers.serviceControllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.demoJavaFX.animation.Shake;
 import com.demoJavaFX.dao.UserDAO;
 import com.demoJavaFX.model.User;
 import com.demoJavaFX.service.PasswordUtils;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SignUpController {
 
     @FXML
-    private ResourceBundle resources;
+    private JFXRadioButton radioStudentButton;
 
     @FXML
-    private URL location;
+    private ToggleGroup group;
 
     @FXML
-    private TextField loginField;
+    private JFXRadioButton radioPrepodButton;
 
     @FXML
-    private TextField passwordField;
+    private JFXButton signUpButton;
 
     @FXML
-    private TextField firstNameField;
+    private JFXButton backButton;
 
     @FXML
-    private TextField lastNameField;
+    private JFXTextField loginField;
 
     @FXML
-    private Button signUpButton;
+    private JFXTextField firstNameField;
 
     @FXML
-    private RadioButton radioStudentButton;
+    private JFXTextField lastNameField;
 
     @FXML
-    private RadioButton radioPrepodButton;
-
-    @FXML
-    private Button backButton;
+    private JFXPasswordField passwordField;
 
     @FXML
     void initialize() {
 
         signUpButton.setOnAction(actionEvent -> {
             if (signUp()) {
-                switchScene(signUpButton, "/com/demoJavaFX/primary.fxml");
+                switchScene(signUpButton, "/fxml/primary.fxml", "Sign in");
             }
             else {
-                Shake shake = new Shake(signUpButton);
+                new Shake(signUpButton);
                 System.out.println("No way");
             }
         });
 
         backButton.setOnAction(actionEvent -> {
-            switchScene(backButton, "/com/demoJavaFX/primary.fxml");
+            switchScene(backButton, "/fxml/primary.fxml", "Sign in");
         });
+
     }
 
     private boolean signUp() {
@@ -88,15 +88,15 @@ public class SignUpController {
             }
         }
         else {
-            Shake shake = new Shake(signUpButton);
+            new Shake(signUpButton);
             System.out.println("No way");
         }
         return isSignUp;
     }
 
-    //выделил отдельно повторяющийся код в метод, который переключает при нажатии на Button button
+    //выделил отдельно повторяющийся код в метод, который переключает при нажатии на JFXButton button
     // на другое окно String fxml
-    private void switchScene(Button button, String fxml) {
+    private void switchScene(JFXButton button, String fxml, String title) {
         button.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
@@ -107,8 +107,10 @@ public class SignUpController {
         }
         Parent root = loader.getRoot();
         Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle(title);
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
     }
 
 }

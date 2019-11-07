@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.businessControllers.Page1Controller">
+   <children>
+      <Label fx:id="skillField" layoutX="340.0" layoutY="22.0" text="Выберите умение" />
+      <Label fx:id="descriptionField" layoutX="340.0" layoutY="104.0" text="Описание умения" />
+      <Label fx:id="taskFileld" layoutX="259.0" layoutY="264.0" text="Выберите практико-ориентированное задание" />
+      <Label fx:id="descriptionField1" layoutX="359.0" layoutY="346.0" text="Описание" />
+      <JFXComboBox fx:id="skillBox" layoutX="24.0" layoutY="51.0" prefHeight="25.0" prefWidth="731.0" />
+      <JFXTextArea fx:id="textOfSkill" editable="false" layoutX="24.0" layoutY="137.0" prefHeight="88.0" prefWidth="731.0" wrapText="true" />
+      <JFXComboBox fx:id="caseBox" layoutX="212.0" layoutY="309.0" prefHeight="25.0" prefWidth="348.0" />
+      <JFXTextArea fx:id="textOfCase" editable="false" layoutX="21.0" layoutY="386.0" prefHeight="58.0" prefWidth="731.0" wrapText="true" />
+      <JFXButton fx:id="signInButton" layoutX="653.0" layoutY="514.0" text="Сменить логин" />
+      <JFXToggleButton fx:id="typeButton" layoutX="24.0" layoutY="498.0" prefWidth="192.0" text="Диагностика" toggleColor="#0eabff">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXToggleButton>
+   </children>
+</AnchorPane>

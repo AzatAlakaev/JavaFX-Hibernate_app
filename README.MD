@@ -2,11 +2,14 @@
 
 В данном проекте используются:
   - JavaFX
+  - jfoenix
   - SQLite
   - Hibernate
   - Maven
   
   ![Screenshot](docs/images/screenshot.jpg)
+  
+  ![Screenshot](docs/images/screenshot1.jpg)
   
   
 В intellij idea запуск приложения осуществляется с ключами
