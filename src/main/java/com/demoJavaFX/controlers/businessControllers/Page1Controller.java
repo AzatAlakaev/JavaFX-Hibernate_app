@@ -63,21 +63,6 @@ public class Page1Controller {
     }
 
     @FXML
-    public void moveWindow(MouseEvent event) {
-        ControllerHelper.moveWindow(event, vbox);
-    }
-
-    @FXML
-    public void startMoveWindow(MouseEvent event) {
-        ControllerHelper.startMoveWindow(event, vbox);
-    }
-
-    @FXML
-    public void endMoveWindow(MouseEvent event) {
-        ControllerHelper.endMoveWindow(event, vbox);
-    }
-
-    @FXML
     void initialize() {
         SkillDAO skillDAO=new SkillDAO();
         ObservableList<String> listOfSkillNames = FXCollections.observableArrayList(skillDAO.findAll().stream()

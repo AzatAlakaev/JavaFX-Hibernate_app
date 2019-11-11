@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#startMoveWindow" onMouseDragged="#moveWindow" onMouseReleased="#endMoveWindow" prefHeight="291.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.serviceControllers.PrimaryController">
+<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.serviceControllers.PrimaryController">
    <children>
       <HBox prefHeight="14.0" prefWidth="412.0" styleClass="title-bar">
          <children>
