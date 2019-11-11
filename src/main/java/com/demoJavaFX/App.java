@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -14,15 +15,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/primary" + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/primary.fxml"));
         try {
             fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setResizable(false);
-        stage.setScene(new Scene(fxmlLoader.getRoot()));
-        stage.setTitle("Sign in");
+        Scene scene = new Scene(fxmlLoader.getRoot());
+
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -43,6 +46,5 @@ public class App extends Application {
 //     stage = loader.getRoot();
 //     stage.show();
 //     }
-
 
 }

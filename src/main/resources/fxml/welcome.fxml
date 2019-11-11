@@ -3,16 +3,22 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="274.0" style="-fx-background-color: #211F24;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.serviceControllers.WelcomeController">
+<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#startMoveWindow" onMouseDragged="#moveWindow" onMouseReleased="#endMoveWindow" prefHeight="103.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.demoJavaFX.controlers.serviceControllers.WelcomeController">
    <children>
-      <Label fx:id="welcomeField" layoutX="59.0" layoutY="24.0" text="Здравствуйте" textFill="#f4f486" />
-      <Text fx:id="textField" fill="#f4f486" layoutX="137.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #F4F486;" text="Text!">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Text>
-      <JFXButton fx:id="helloButton" layoutX="103.0" layoutY="60.0" style="-fx-background-color: #F4F486;" text="Привет!" />
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="274.0" style="-fx-background-color: #211F24;">
+         <children>
+            <Label fx:id="welcomeField" layoutX="59.0" layoutY="24.0" text="Здравствуйте" textFill="#f4f486" />
+            <Text fx:id="textField" fill="#f4f486" layoutX="137.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: #F4F486;" text="Text!">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="helloButton" layoutX="103.0" layoutY="60.0" style="-fx-background-color: #F4F486;" text="Привет!" />
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

@@ -1,5 +1,6 @@
 package com.demoJavaFX.controlers.businessControllers;
 
+import com.demoJavaFX.controlers.controllerHelper.ControllerHelper;
 import com.demoJavaFX.dao.CaseDAO;
 import com.demoJavaFX.dao.SkillDAO;
 import com.jfoenix.controls.JFXButton;
@@ -9,17 +10,17 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Page1Controller {
+
+    @FXML
+    VBox vbox;
 
     @FXML
     private Label skillField;
@@ -52,6 +53,31 @@ public class Page1Controller {
     private JFXToggleButton typeButton;
 
     @FXML
+    public void close(MouseEvent event) {
+        ControllerHelper.close(event);
+    }
+
+    @FXML
+    public void minimize(MouseEvent event) {
+        ControllerHelper.minimize(event);
+    }
+
+    @FXML
+    public void moveWindow(MouseEvent event) {
+        ControllerHelper.moveWindow(event, vbox);
+    }
+
+    @FXML
+    public void startMoveWindow(MouseEvent event) {
+        ControllerHelper.startMoveWindow(event, vbox);
+    }
+
+    @FXML
+    public void endMoveWindow(MouseEvent event) {
+        ControllerHelper.endMoveWindow(event, vbox);
+    }
+
+    @FXML
     void initialize() {
         SkillDAO skillDAO=new SkillDAO();
         ObservableList<String> listOfSkillNames = FXCollections.observableArrayList(skillDAO.findAll().stream()
@@ -76,28 +102,12 @@ public class Page1Controller {
         caseBox.setOnAction(actionEvent -> textOfCase.setText(caseDAO.findByName(caseBox.getValue()).getNote()));
 
         signInButton.setOnAction(actionEvent -> {
-            switchScene(signInButton, "/fxml/primary.fxml");
+            ControllerHelper.switchScene(signInButton, "/fxml/primary.fxml", "Sign in", Page1Controller.class);
         });
 
         typeButton.setOnAction(actionEvent -> {
             if (typeButton.isSelected()) typeButton.setText("Тренажер");
             else typeButton.setText("Диагностика");
         });
-    }
-
-    private void switchScene(JFXButton button, String fxml) {
-        button.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 }

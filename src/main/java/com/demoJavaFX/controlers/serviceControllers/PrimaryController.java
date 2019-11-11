@@ -1,6 +1,7 @@
 package com.demoJavaFX.controlers.serviceControllers;
 
 import com.demoJavaFX.animation.Shake;
+import com.demoJavaFX.controlers.controllerHelper.ControllerHelper;
 import com.demoJavaFX.dao.UserDAO;
 import com.demoJavaFX.model.User;
 import com.demoJavaFX.service.PasswordUtils;
@@ -8,17 +9,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 public class PrimaryController {
 
     private UserDAO dao=new UserDAO();
+
+    @FXML
+    VBox vbox;
 
     @FXML
     private JFXTextField loginField;
@@ -33,9 +33,34 @@ public class PrimaryController {
     private JFXButton signUpButton;
 
     @FXML
+    public void close(MouseEvent event) {
+        ControllerHelper.close(event);
+    }
+
+    @FXML
+    public void minimize(MouseEvent event) {
+        ControllerHelper.minimize(event);
+    }
+
+    @FXML
+    public void moveWindow(MouseEvent event) {
+        ControllerHelper.moveWindow(event, vbox);
+    }
+
+    @FXML
+    public void startMoveWindow(MouseEvent event) {
+        ControllerHelper.startMoveWindow(event, vbox);
+    }
+
+    @FXML
+    public void endMoveWindow(MouseEvent event) {
+        ControllerHelper.endMoveWindow(event, vbox);
+    }
+
+    @FXML
     void initialize() {
         signUpButton.setOnAction(actionEvent -> {
-            switchScene(signUpButton, "/fxml/signUp.fxml", "Sign up");
+            ControllerHelper.switchScene(signUpButton, "/fxml/signUp.fxml", "Sign up", PrimaryController.class);
         });
 
         signInButton.setOnAction(actionEvent -> {
@@ -88,7 +113,7 @@ public class PrimaryController {
             User user = dao.findAll().stream().filter(user1 -> user1.getLogin().equals(login)).findFirst().get();
             if (PasswordUtils.verifyPassword(password, user.getPassword())) {
                 WelcomeController.welcomeText = user.getFirstName() + " " + user.getLastName(); //имя фамилия для привествия
-                switchScene(signInButton, "/fxml/welcome.fxml", "welcome");
+                ControllerHelper.switchScene(signInButton, "/fxml/welcome.fxml", "welcome", PrimaryController.class);
             }
             else {
                 new Shake(signInButton);
@@ -99,25 +124,6 @@ public class PrimaryController {
             new Shake(signInButton);
             System.out.println("Wrong login or password");
         }
-    }
-
-    //выделил отдельно повторяющийся код в метод, который переключает при нажатии на JFXButton button
-    // на другое окно String fxml
-    private void switchScene(JFXButton button, String fxml, String title) {
-        button.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
 }
